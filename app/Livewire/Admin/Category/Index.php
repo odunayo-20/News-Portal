@@ -93,7 +93,7 @@ class Index extends Component
     public function deleteConfirm($id)
     {
         $this->deleteId = $id;
-        $this->dispatch('showDeleteModal');
+        $this->dispatch('show-delete-modal');
     }
 
     public function deleteCategory()
@@ -102,6 +102,6 @@ class Index extends Component
         $category->delete();
 
         session()->flash('message', 'Category deleted successfully.');
-        $this->dispatch('closeModal');
+        $this->dispatch('close-delete-modal');
     }
 }

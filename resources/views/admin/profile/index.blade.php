@@ -28,7 +28,7 @@
                           <button class="btn btn-success">Follow</button>
                         </div>
                       </div>
-                      
+
                       <div class="border-bottom py-4">
                         <p>Skills</p>
                         <div>
@@ -81,7 +81,16 @@
                             Facebook
                           </span>
                           <span class="float-right text-muted">
-                            <a href="#">David Grey</a>
+                            <a href="{{ $user->social_links['facebook'] ?? '#' }}">{{ $user->social_links['facebook'] ?? 'Facebook' }}</a>
+                          </span>
+                        </p>
+
+                        <p class="clearfix">
+                          <span class="float-left">
+                            Instagram
+                          </span>
+                          <span class="float-right text-muted">
+                            <a href="{{ $user->social_links['instagram'] ?? '#' }}">{{ $user->social_links['instagram'] ?? 'Instagram' }}</a>
                           </span>
                         </p>
                         <p class="clearfix">
@@ -89,7 +98,7 @@
                             Twitter
                           </span>
                           <span class="float-right text-muted">
-                            <a href="#">@davidgrey</a>
+                            <a href="{{ $user->social_links['twitter'] ?? '#' }}">{{ $user->social_links['twitter'] ?? 'Twitter' }}</a>
                           </span>
                         </p>
                       </div>
@@ -114,7 +123,7 @@
                           <button class="btn btn-outline-secondary btn-icon">
                             <i class="far fa-envelope"></i>
                           </button>
-                          <button class="btn btn-primary"><a href="" class="link">Edit</a></button>
+                          <button class="btn btn-primary"><a href="{{ route('admin.profile.edit') }}" class="link">Edit</a></button>
                         </div>
                       </div>
                       <div class="mt-4 py-2 border-top border-bottom">

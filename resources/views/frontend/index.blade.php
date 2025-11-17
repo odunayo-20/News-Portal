@@ -6,26 +6,41 @@
         <!-- banner area start -->
         <div class="banner-inner pt-5">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="thumb after-left-top">
-                            <img src="{{ asset('frontend/assets/img/banner/1.png') }}" alt="img">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 align-self-center">
-                        <div class="banner-details mt-4 mt-lg-0">
-                            <div class="post-meta-single">
-                                <ul>
-                                    <li><a class="tag-base tag-blue" href="#">Tech</a></li>
-                                    <li class="date"><i class="fa fa-clock-o"></i>08.22.2020</li>
-                                </ul>
+               <div class="row">
+                    @foreach ($aboutPostFirst as $aboutPostFirstItem)
+                        <div class="col-lg-6">
+                            <div class="thumb after-left-top">
+                                <img src="{{ asset('storage/' . $aboutPostFirstItem->featured_image) }}" alt="img">
                             </div>
-                            <h2>ReZoom outage left some people locked out.</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                                labore et dolore magna aliqua. </p>
-                            <a class="btn btn-blue" href="#">Read More</a>
                         </div>
-                    </div>
+                        <div class="col-lg-6 align-self-center">
+                            <div class="banner-details mt-4 mt-lg-0">
+                                <div class="post-meta-single">
+                                    <ul>
+                                        @php
+                                            $tags = $postTags->where('post_id', $aboutPostFirstItem->id);
+                                        @endphp
+
+                                        @if ($tags->isNotEmpty())
+                                            @foreach ($tags as $tag)
+                                                <li><a class="tag-base tag-blue" href="#">{{ $tag->tag->name }}</a>
+                                                </li>
+                                            @endforeach
+                                        @else
+                                            <li><a class="tag-base tag-blue" href="#">Tech</a></li>
+                                        @endif
+
+                                        <li class="date"><i
+                                                class="fa fa-clock-o"></i>{{ $aboutPostFirstItem->created_at->format('m.d.Y') }}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <h2>{{ $aboutPostFirstItem->title }}</h2>
+                                <p>{!! Str::limit($aboutPostFirstItem->content, 150, '...') !!}</p>
+                                <a class="btn btn-blue" href="{{ route("post.show",$aboutPostFirstItem->slug) }}">Read More</a>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -54,7 +69,7 @@
                                 </a>
                             </div>
                             <div class="details">
-                                <h6 class="title"><a href="#">{{ $aboutPost->title }}</a></h6>
+                                <h6 class="title"><a href="{{ route("post.show",$aboutPost->slug) }}">{{ $aboutPost->title }}</a></h6>
                                 <div class="post-meta-single mt-3">
                                     <ul>
                                         <li><i class="fa fa-clock-o"></i>{{ $aboutPost->created_at->format('m.d.Y') }}</li>
@@ -141,7 +156,7 @@
                                             <div class="post-meta-single">
                                                 <p><i class="fa fa-clock-o"></i>{{ $value->created_at->format('F d, Y') }}</p>
                                             </div>
-                                            <h6 class="title"><a href="#">{{ $value->title }}</a></h6>
+                                            <h6 class="title"><a href="{{ route('post.show', $value->slug) }}">{{ $value->title }}</a></h6>
                                         </div>
                                     </div>
 
@@ -194,7 +209,7 @@
                                             <div class="post-meta-single">
                                                 <p><i class="fa fa-clock-o"></i>{{ $value->created_at->format('F d, Y') }}</p>
                                             </div>
-                                            <h6 class="title"><a href="#">{{ $value->title }}</a></h6>
+                                            <h6 class="title"><a href="{{ route('post.show', $value->slug) }}">{{ $value->title }}</a></h6>
                                         </div>
                                     </div>
 
@@ -505,7 +520,7 @@
         </div>
     </div>
 
-    <div class="bg-sky pd-top-80 pd-bottom-50" id="latest">
+    {{-- <div class="bg-sky pd-top-80 pd-bottom-50" id="latest">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
@@ -764,7 +779,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="pd-top-80 pd-bottom-50" id="grid">
         <div class="container">
@@ -772,7 +787,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/15.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/15.png') }}" alt="img">
                             <a class="tag-base tag-purple" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -786,7 +801,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/16.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/16.png') }}" alt="img">
                             <a class="tag-base tag-green" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -800,7 +815,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/17.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/17.png') }}" alt="img">
                             <a class="tag-base tag-red" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -814,7 +829,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/18.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/18.png') }}" alt="img">
                             <a class="tag-base tag-purple" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -828,7 +843,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/19.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/19.png') }}" alt="img">
                             <a class="tag-base tag-red" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -842,7 +857,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/20.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/20.png') }}" alt="img">
                             <a class="tag-base tag-blue" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -856,7 +871,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/21.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/21.png') }}" alt="img">
                             <a class="tag-base tag-light-green" href="#">Tech</a>
                         </div>
                         <div class="details">
@@ -870,7 +885,7 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single-post-wrap style-overlay">
                         <div class="thumb">
-                            <img src="assets/img/post/22.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/post/22.png') }}" alt="img">
                             <a class="tag-base tag-blue" href="#">Tech</a>
                         </div>
                         <div class="details">

@@ -1,9 +1,222 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextPage - Blog Template</title>
+@extends('layouts.frontend-app')
+
+@section('content')
+    <div class="container">
+        <div class="main-wrapper">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Blog Post 1 -->
+                <div class="blog-post">
+                    <img src="{{ asset('storage/' . $post->featured_image) }}" alt="Post">
+                    <div class="details">
+                        <div class="post-meta">
+                            <span><i class="fa fa-user"></i> {{ $post->user->name }} </span>
+                            <span><i class="fa fa-calendar"></i> {{ $post->created_at->format('d F Y') }}</span>
+                            <span><i class="fa fa-comments"></i> Comments ({{ $post->comments->count() }})</span>
+
+
+
+                             <span><i class="fa fa-clock-o"></i>   {{ $post->reading_time }} </span>
+                             <span><i class="fa fa-eye"></i>
+                                {{ $post->views }} views </span>
+                            </small>
+                        </div>
+                        <h2><a href="#">{{ $post->title }}</a></h2>
+                        <p>{!! $post->excerpt !!}</p>
+                        <p>{!! $post->content !!}</p>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                {{-- <div class="blog-post">
+                    <img src="https://via.placeholder.com/800x400/3f51b5/ffffff?text=Web+Design+Trend" alt="Post">
+                    <div class="details">
+                        <div class="post-meta">
+                            <span><i class="fa fa-user"></i> Marcel Horon</span>
+                            <span><i class="fa fa-calendar"></i> 23 June 2020</span>
+                            <span><i class="fa fa-comments"></i> Comments (35)</span>
+                        </div>
+                        <h2><a href="#">What Should You Do When A Web Design Trend Becomes Too Popular? Typography</a>
+                        </h2>
+                        <p>Ther most capable to purchase of this incredible idea of demonstrating designers and printing
+                            gear we have spe will give you a complete account of the system, and exposted the individual
+                            highlights of the point of the typ. Im master builder of human happiness. No one rejects,
+                            dislikes or avoids pleasure itself, because it is pleasure, but because those who do not know
+                            how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
+                        <button class="btn btn-blue">Learn More</button>
+                    </div>
+                </div> --}}
+
+                <!-- Blog Post 3 with overlay -->
+                <div class="blog-post">
+                    <div style="position: relative; background: #f0f0f0;">
+                        <img src="https://via.placeholder.com/800x400/2196f3/ffffff?text=Visual+Design+Language"
+                            alt="Post" style="opacity: 0.7;">
+                        <div
+                            style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: #fff; padding: 30px; text-align: center;">
+                            <div>
+                                <h3 style="color: #fff; margin-bottom: 15px;">Visual Design Language The Building Blocks Of
+                                    Design Web Design Trend Becomes</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="post-meta">
+                            <span><i class="fa fa-user"></i> Roland Uham</span>
+                            <span><i class="fa fa-calendar"></i> 23 JUNE 2020</span>
+                            <span><i class="fa fa-comments"></i> Comments (103)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Post 4 with Video -->
+                <div class="blog-post">
+                    <div class="video-play">
+                        <img src="https://via.placeholder.com/800x400/4caf50/ffffff?text=Mobile+Conversions" alt="Post">
+                        <div class="play-icon">
+                            <i class="fa fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="post-meta">
+                            <span><i class="fa fa-user"></i> Marcel Horon</span>
+                            <span><i class="fa fa-calendar"></i> 23 June 2020</span>
+                            <span><i class="fa fa-comments"></i> Comments (35)</span>
+                        </div>
+                        <h2><a href="#">How Increase Mobile Conversions With Category Page DesignTrend Becomes
+                                Typography</a></h2>
+                        <p>Ther most capable to purchase of this incredible idea of demonstrating designers and printing
+                            gear we have spe will give you a complete account of the system, and exposted the individual
+                            highlights of the point of the typ. Im master builder of human happiness. No one rejects,
+                            dislikes or avoids pleasure itself, because it is pleasure, but because those who do not know
+                            how to pursue pleasure rationally encounter consequences that are extremely painful.</p>
+                        <button class="btn btn-blue">Learn More</button>
+                    </div>
+                </div>
+
+                <!-- Advertisement -->
+                {{-- <div
+                    style="background: var(--primary-blue); padding: 30px; border-radius: 10px; margin: 40px 0; display: flex; align-items: center; gap: 30px;">
+                    <img src="https://via.placeholder.com/150x150/ff6b35/ffffff?text=Headphones" alt="Ad"
+                        style="width: 150px; height: 150px;">
+                    <div style="color: #fff; flex: 1;">
+                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Get 70% discount on Amazon</h3>
+                        <button class="btn" style="background: #ffc107; color: #000; margin-top: 10px;">Shop Now</button>
+                    </div>
+                    <div style="color: #fff; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold;">40%</div>
+                    </div>
+                </div> --}}
+
+
+
+
+
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Categories -->
+                <div class="sidebar-item">
+                    <div class="sidebar-title">Category</div>
+                    <div class="category-grid">
+
+
+                        @forelse ($categories as $category)
+                            <div class="category-item cat-health">{{ $category->name }}</div>
+                        @empty
+                            <div class="category-item cat-health">No Categories</div>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Join With Us -->
+        <div class="sidebar-item">
+            <div class="sidebar-title">Join With Us</div>
+            <ul class="social-area" style="gap: 15px; padding: 10px 0; justify-content: space-around;">
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+            </ul>
+        </div>
+
+        <!-- Trending News -->
+        <div class="sidebar-item">
+            <div class="sidebar-title">Trending News</div>
+            <div class="trending-card">
+                <img src="https://via.placeholder.com/80x80/0066ff/ffffff?text=Trending+1" alt="Trending">
+                <div class="details">
+                    <span style="font-size: 11px; color: var(--text-gray);">September 10, 2020</span>
+                    <h6><a href="#">The FAA will band drones</a></h6>
+                </div>
+            </div>
+            <div class="trending-card">
+                <img src="https://via.placeholder.com/80x80/ff6b35/ffffff?text=Trending+2" alt="Trending">
+                <div class="details">
+                    <span style="font-size: 11px; color: var(--text-gray);">August 28, 2020</span>
+                    <h6><a href="#">Retro Airbnb-style lodging for</a></h6>
+                </div>
+            </div>
+            <div class="trending-card">
+                <img src="https://via.placeholder.com/80x80/28a745/ffffff?text=Trending+3" alt="Trending">
+                <div class="details">
+                    <span style="font-size: 11px; color: var(--text-gray);">August 15, 2020</span>
+                    <h6><a href="#">Uncle long-drawn Luxe ves</a></h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Section -->
+        <div class="sidebar-item">
+            <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+                <span class="tag-base tag-blue">Featured</span>
+                <span class="tag-base tag-orange">Comment</span>
+                <span class="tag-base tag-green">Comment</span>
+            </div>
+        </div>
+
+        <!-- More Posts -->
+        <div class="sidebar-item">
+            <div class="trending-card">
+                <img src="https://via.placeholder.com/80x80/6f42c1/ffffff?text=Post+1" alt="Post">
+                <div class="details">
+                    <span style="font-size: 11px; color: var(--text-gray);">August 22, 2020</span>
+                    <h6><a href="#">JO sweet Software could block</a></h6>
+                </div>
+            </div>
+            <div class="trending-card">
+                <img src="https://via.placeholder.com/80x80/17a2b8/ffffff?text=Post+2" alt="Post">
+                <div class="details">
+                    <span style="font-size: 11px; color: var(--text-gray);">August 20, 2020</span>
+                    <h6><a href="#">Cooperation blossoms more</a></h6>
+                </div>
+            </div>
+            <div class="trending-card">
+                <img src="https://via.placeholder.com/80x80/dc3545/ffffff?text=Post+3" alt="Post">
+                <div class="details">
+                    <span style="font-size: 11px; color: var(--text-gray);">August 18, 2020</span>
+                    <h6><a href="#">Jo sweet Software could block</a></h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter">
+            <h4>Newsletter</h4>
+            <p>Stay Updated With Us</p>
+            <input type="email" placeholder="Your email here">
+            <button><i class="fa fa-envelope"></i> Subscribe Now</button>
+        </div>
+
+       @include('frontend.posts.comment', ['post' => $post])
+    </div>
+
+
     <style>
         * {
             margin: 0;
@@ -11,151 +224,292 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-blue: #0066ff;
+            --dark-blue: #0a1e42;
+            --light-blue: #e6f2ff;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --border-color: #e0e0e0;
+            --bg-black: #0a0a0a;
+            --bg-sky: #f5f9ff;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+            line-height: 1.6;
+            color: var(--text-dark);
         }
 
-        /* Top Bar */
-        .topbar {
-            background-color: #001f3f;
-            color: white;
-            padding: 12px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 13px;
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
-        .topbar-left a {
-            color: white;
+        a {
             text-decoration: none;
-            margin-right: 20px;
+            color: inherit;
+            transition: all 0.3s;
         }
 
-        .topbar-right {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icon {
-            color: white;
-            text-decoration: none;
-            font-size: 14px;
-            cursor: pointer;
-        }
-
-        /* Header */
-        .header {
-            background-color: white;
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: #0066FF;
-            text-decoration: none;
-        }
-
-        /* Promo Banner */
-        .promo-banner {
-            background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
-            color: white;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        /* Navigation */
-        .nav {
-            background-color: #0066FF;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .nav a, .nav button {
-            color: white;
-            padding: 14px 18px;
-            text-decoration: none;
-            font-weight: 600;
-            cursor: pointer;
-            border: none;
-            background: none;
-            transition: background-color 0.3s;
-            font-size: 13px;
-        }
-
-        .nav a:hover, .nav button:hover {
-            background-color: #0052CC;
-        }
-
-        .search-box {
-            margin-left: auto;
-            margin-right: 20px;
-            display: flex;
-        }
-
-        .search-box input {
-            padding: 8px 12px;
-            border: none;
-            width: 180px;
-            border-radius: 4px 0 0 4px;
-        }
-
-        .search-box button {
-            padding: 8px 12px;
-            background-color: #0052CC;
-            color: white;
-            border: none;
-            border-radius: 0 4px 4px 0;
-            cursor: pointer;
-            margin: 0;
-        }
-
-        /* Breadcrumb */
-        .breadcrumb {
-            background-color: #E3F2FD;
-            padding: 15px 40px;
-            font-size: 13px;
-            margin-bottom: 20px;
-        }
-
-        .breadcrumb a {
-            color: #0066FF;
-            text-decoration: none;
-        }
-
-        /* Main Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 15px;
+        }
+
+        /* Preloader */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spinner {
+            display: flex;
+            gap: 10px;
+        }
+
+        .dot1,
+        .dot2 {
+            width: 15px;
+            height: 15px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+
+        .dot2 {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* Topbar */
+        .topbar {
+            background: var(--dark-blue);
+            color: #fff;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+
+        .topbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .topbar-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .topbar-menu a {
+            color: #fff;
+        }
+
+        .topbar-menu a:hover {
+            color: var(--primary-blue);
+        }
+
+        .topbar-social {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .social-area {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .social-area a {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        .social-area a:hover {
+            background: var(--primary-blue);
+        }
+
+        /* Header */
+        .adbar {
+            background: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .adbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+        }
+
+        .logo span {
+            color: #000;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: var(--primary-blue);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .navbar-nav {
+            display: flex;
+            list-style: none;
+            gap: 5px;
+        }
+
+        .navbar-nav a {
+            color: #fff;
+            padding: 15px 20px;
+            display: block;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .navbar-nav a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: #fff;
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        .nav-search {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-search input {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            width: 200px;
+        }
+
+        .nav-search button {
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        /* Page Title */
+        .page-title {
+            padding: 20px 0;
+            background: var(--bg-sky);
+        }
+
+        .page-title h2 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+        }
+
+        .page-title p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* Main Layout */
+        .main-wrapper {
             display: grid;
-            grid-template-columns: 1fr 320px;
-            gap: 40px;
-            margin-bottom: 60px;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 40px 0;
+        }
+
+        .sidebar {
+            background: var(--bg-sky);
+            padding: 20px;
+            border-radius: 10px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
         }
 
         /* Blog Post */
         .blog-post {
-            background: white;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
             margin-bottom: 40px;
-            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
-        .post-header {
-            padding: 25px;
-            border-bottom: 1px solid #eee;
+        .blog-post img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .blog-post .details {
+            padding: 30px;
         }
 
         .post-meta {
@@ -163,868 +517,471 @@
             gap: 20px;
             align-items: center;
             font-size: 13px;
-            color: #666;
+            color: var(--text-gray);
             margin-bottom: 15px;
         }
 
-        .post-tag {
-            background-color: #E3F2FD;
-            color: #0066FF;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-weight: 600;
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        .post-title {
-            font-size: 26px;
-            font-weight: 700;
-            color: #001f3f;
+        .blog-post h2 {
+            font-size: 1.6rem;
+            margin: 15px 0;
             line-height: 1.4;
+            color: var(--text-dark);
         }
 
-        .post-images-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0;
-            margin: 25px 0;
+        .blog-post h2 a {
+            color: var(--text-dark);
         }
 
-        .post-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            object-fit: cover;
+        .blog-post h2 a:hover {
+            color: var(--primary-blue);
         }
 
-        .post-content {
-            padding: 0 25px 25px 25px;
-        }
-
-        .post-text {
-            color: #555;
+        .blog-post p {
+            color: var(--text-gray);
             line-height: 1.8;
-            font-size: 15px;
-            margin-bottom: 20px;
+            margin: 15px 0;
         }
 
-        .quote-box {
-            background: #f9f9f9;
-            border-left: 4px solid #0066FF;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-
-        .quote-icon {
-            font-size: 24px;
-            color: #0066FF;
-            margin-bottom: 10px;
-        }
-
-        .quote-text {
-            color: #555;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .learn-more {
-            background-color: #0066FF;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            font-weight: 600;
+        .tag-base {
+            padding: 5px 12px;
+            border-radius: 20px;
             display: inline-block;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .tag-blue {
+            background: var(--primary-blue);
+            color: #fff;
+        }
+
+        .tag-orange {
+            background: #ff6b35;
+            color: #fff;
+        }
+
+        .tag-green {
+            background: #28a745;
+            color: #fff;
+        }
+
+        .tag-red {
+            background: #dc3545;
+            color: #fff;
+        }
+
+        .tag-purple {
+            background: #6f42c1;
+            color: #fff;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            font-weight: 600;
+            margin-top: 20px;
+            cursor: pointer;
             border: none;
+            font-size: 14px;
+        }
+
+        .btn-blue {
+            background: var(--primary-blue);
+            color: #fff;
+        }
+
+        .btn-blue:hover {
+            background: #0052cc;
+        }
+
+        /* Video Play Button */
+        .video-play {
+            position: relative;
             cursor: pointer;
         }
 
-        .learn-more:hover {
-            background-color: #0052CC;
-        }
-
-        /* Video Post */
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-
-        .play-button {
-            width: 80px;
-            height: 80px;
-            background: white;
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            font-size: 36px;
-            transition: transform 0.3s;
+            font-size: 30px;
+            color: var(--primary-blue);
+            transition: 0.3s;
         }
 
-        .play-button:hover {
-            transform: scale(1.1);
+        .video-play:hover .play-icon {
+            background: #fff;
+            transform: translate(-50%, -50%) scale(1.1);
         }
 
-        /* Sidebar */
-        .sidebar {
-            height: fit-content;
-        }
-
-        .sidebar-widget {
-            background: white;
-            padding: 25px;
-            margin-bottom: 25px;
-            border-radius: 4px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .widget-title {
-            font-size: 18px;
-            font-weight: 700;
+        /* Sidebar Items */
+        .sidebar-item {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
             margin-bottom: 20px;
-            color: #001f3f;
+        }
+
+        .sidebar-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--primary-blue);
+            padding-bottom: 10px;
         }
 
         .category-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
 
-        .category-img {
-            width: 100%;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 4px;
+        .category-item {
+            padding: 25px 15px;
+            text-align: center;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: 600;
             cursor: pointer;
             transition: transform 0.3s;
+            font-size: 0.85rem;
         }
 
-        .category-img:hover {
+        .category-item:hover {
             transform: scale(1.05);
         }
 
-        .deals-card {
-            background: linear-gradient(135deg, #0066FF 0%, #0052CC 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 4px;
+        .cat-food {
+            background: #ff6b35;
+        }
+
+        .cat-tech {
+            background: #0066ff;
+        }
+
+        .cat-travel {
+            background: #28a745;
+        }
+
+        .cat-business {
+            background: #6f42c1;
+        }
+
+        .cat-lifestyle {
+            background: #17a2b8;
+        }
+
+        .cat-health {
+            background: #28a745;
+        }
+
+        /* Deals Box */
+        .deals-box {
+            background: var(--primary-blue);
+            padding: 25px;
+            border-radius: 10px;
+            color: #fff;
             text-align: center;
+            margin-bottom: 20px;
         }
 
-        .deals-title {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 8px;
+        .deals-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
         }
 
-        .deals-price {
-            font-size: 24px;
-            font-weight: 700;
+        .deals-box .price {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 10px 0;
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
+        .deals-box p {
+            font-size: 0.9rem;
         }
 
-        .social-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 18px;
-        }
-
-        .social-btn:hover {
-            border-color: #0066FF;
-            color: #0066FF;
-        }
-
-        .trending-item {
+        /* Trending News */
+        .trending-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
             display: flex;
             gap: 12px;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .trending-item:last-child {
-            border-bottom: none;
-        }
-
-        .trending-thumb {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 4px;
-            flex-shrink: 0;
-        }
-
-        .trending-content {
-            flex: 1;
-        }
-
-        .trending-content a {
-            font-size: 13px;
-            color: #0066FF;
-            text-decoration: none;
-            font-weight: 600;
-            line-height: 1.4;
-        }
-
-        .trending-content a:hover {
-            text-decoration: underline;
-        }
-
-        .trending-date {
-            font-size: 12px;
-            color: #999;
-            margin-top: 5px;
-        }
-
-        .nav-arrows {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 15px;
-        }
-
-        .nav-arrow {
-            background: #f0f0f0;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background 0.3s;
-        }
-
-        .nav-arrow:hover {
-            background: #0066FF;
-            color: white;
-        }
-
-        /* Author Box */
-        .author-box {
-            display: flex;
-            gap: 15px;
-            padding: 20px;
-            background: white;
-            margin: 40px 0;
-            border-radius: 4px;
-        }
-
-        .author-avatar {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            flex-shrink: 0;
-        }
-
-        .author-info h4 {
-            margin-bottom: 5px;
-            color: #001f3f;
-        }
-
-        .author-info p {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Related Posts */
-        .related-posts {
-            background: white;
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 4px;
-        }
-
-        .related-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: #001f3f;
-        }
-
-        .related-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .related-item {
-            text-align: center;
-        }
-
-        .related-image {
-            width: 100%;
-            height: 150px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 4px;
             margin-bottom: 12px;
         }
 
-        .related-item-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #001f3f;
-            line-height: 1.4;
-        }
-
-        /* Comments Section */
-        .comments-section {
-            background: white;
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 4px;
-        }
-
-        .comments-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 25px;
-            color: #001f3f;
-        }
-
-        .comment {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .comment:last-child {
-            border-bottom: none;
-        }
-
-        .comment-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .trending-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
             flex-shrink: 0;
         }
 
-        .comment-body {
+        .trending-card .details {
+            padding: 10px;
             flex: 1;
         }
 
-        .comment-author {
-            font-weight: 700;
-            color: #001f3f;
-            margin-bottom: 5px;
+        .trending-card h6 {
+            font-size: 0.85rem;
+            line-height: 1.3;
+            margin: 5px 0;
         }
 
-        .comment-date {
-            font-size: 12px;
-            color: #999;
+        .trending-card a:hover {
+            color: var(--primary-blue);
         }
 
-        .comment-text {
-            font-size: 14px;
-            color: #666;
-            margin-top: 8px;
-            line-height: 1.6;
+        .trending-card .post-meta {
+            font-size: 11px;
+            gap: 10px;
+            margin: 5px 0 0 0;
         }
 
-        .comment-reply {
-            font-size: 13px;
-            color: #0066FF;
-            margin-top: 8px;
-            cursor: pointer;
+        /* Newsletter */
+        .newsletter {
+            background: var(--primary-blue);
+            padding: 25px;
+            border-radius: 10px;
+            color: #fff;
         }
 
-        /* Comment Form */
-        .comment-form {
-            background: white;
-            padding: 30px;
-            margin-top: 30px;
-            border-radius: 4px;
+        .newsletter h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
         }
 
-        .form-group {
+        .newsletter p {
+            font-size: 0.9rem;
             margin-bottom: 15px;
         }
 
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #001f3f;
-            font-size: 14px;
-        }
-
-        .form-group input,
-        .form-group textarea {
+        .newsletter input {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 14px;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #0066FF;
-            box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);
-        }
-
-        .submit-btn {
-            background-color: #0066FF;
-            color: white;
-            padding: 12px 30px;
+            padding: 10px;
             border: none;
-            border-radius: 4px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+
+        .newsletter button {
+            width: 100%;
+            padding: 10px;
+            background: #fff;
+            color: var(--primary-blue);
+            border: none;
+            border-radius: 5px;
             font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 0.9rem;
         }
 
-        .submit-btn:hover {
-            background-color: #0052CC;
+        .newsletter button:hover {
+            background: #f0f0f0;
         }
 
         /* Footer */
         .footer {
-            background-color: #001f3f;
-            color: white;
-            padding: 50px 40px;
+            background: var(--dark-blue);
+            color: #fff;
+            padding: 50px 0 20px;
             margin-top: 60px;
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto 40px;
+            gap: 30px;
+            margin-bottom: 30px;
         }
 
-        .footer-widget h3 {
-            font-size: 16px;
+        .footer h5 {
+            font-size: 0.95rem;
             margin-bottom: 20px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .footer-widget a {
-            display: block;
-            color: #aaa;
-            text-decoration: none;
-            font-size: 13px;
+        .footer ul {
+            list-style: none;
+        }
+
+        .footer ul li {
             margin-bottom: 10px;
-            transition: color 0.3s;
+            font-size: 0.85rem;
         }
 
-        .footer-widget a:hover {
-            color: white;
-        }
-
-        .footer-widget p {
-            font-size: 13px;
-            color: #aaa;
-            line-height: 1.6;
+        .footer a:hover {
+            color: var(--primary-blue);
         }
 
         .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 20px;
             text-align: center;
-            font-size: 13px;
-            color: #aaa;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.85rem;
+        }
+
+        .footer-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 40px 0;
+        }
+
+        .pagination a,
+        .pagination span {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .pagination a:hover {
+            background: var(--primary-blue);
+            color: #fff;
+            border-color: var(--primary-blue);
+        }
+
+        .pagination .active {
+            background: var(--primary-blue);
+            color: #fff;
+            border-color: var(--primary-blue);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            color: #fff;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            transition: 0.3s;
+        }
+
+        .back-to-top:hover {
+            background: #0052cc;
+        }
+
+        .back-to-top.show {
+            display: flex;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .container {
+            .main-wrapper {
                 grid-template-columns: 1fr;
             }
-            .related-grid {
+
+            .sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .footer-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .post-images-grid {
-                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .header, .topbar, .promo-banner, .breadcrumb, .container {
-                padding: 0 20px;
+            .topbar .container {
+                flex-direction: column;
+                gap: 10px;
             }
-            .nav a, .nav button {
-                padding: 10px 12px;
-                font-size: 12px;
-            }
-            .search-box {
+
+            .navbar-nav {
                 display: none;
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: var(--primary-blue);
             }
-            .related-grid {
-                grid-template-columns: 1fr;
+
+            .navbar-nav.active {
+                display: flex;
             }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .blog-post img {
+                height: 250px;
+            }
+
+            .blog-post h2 {
+                font-size: 1.3rem;
+            }
+
             .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 20px;
-            }
-            .form-row {
                 grid-template-columns: 1fr;
             }
         }
+
+        @media (max-width: 480px) {
+            .category-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .topbar-menu ul {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .post-meta {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .trending-card {
+                flex-direction: column;
+            }
+
+            .trending-card img {
+                width: 100%;
+                height: 120px;
+            }
+        }
     </style>
-</head>
-<body>
-    <!-- Top Bar -->
-    <div class="topbar">
-        <div class="topbar-left">
-            <a href="#">Admin</a>
-            <a href="#">Advertise</a>
-            <a href="#">Support</a>
-            <a href="#">Cop flag</a>
-        </div>
-        <div class="topbar-right">
-            📅 Saturday, October 7
-            <a class="social-icon" href="#">📘</a>
-            <a class="social-icon" href="#">🐦</a>
-            <a class="social-icon" href="#">📸</a>
-            <a class="social-icon" href="#">▶️</a>
-        </div>
-    </div>
-
-    <!-- Header -->
-    <div class="header">
-        <a href="#" class="logo">NEXTPAGE</a>
-    </div>
-
-    <!-- Promo Banner -->
-    <div class="promo-banner">
-        <span>🎄 Big Annual SALE! 🎄</span>
-        <span>UP TO <strong>40%</strong> DISCOUNT</span>
-    </div>
-
-    <!-- Navigation -->
-    <div class="nav">
-        <button>HOME +</button>
-        <button>TECHNOLOGY</button>
-        <button>LIFESTYLE</button>
-        <button>TRAVEL</button>
-        <button>VIDEO +</button>
-        <button>FEATURES</button>
-        <button>PAGES +</button>
-        <div class="search-box">
-            <input type="text" placeholder="Search For">
-            <button>🔍</button>
-        </div>
-    </div>
-
-    <!-- Breadcrumb -->
-    <div class="breadcrumb">
-        <a href="#">Home</a> / <span>Post-details-2</span>
-    </div>
-
-    <!-- Main Content -->
-    <div class="container">
-        <div>
-            <!-- Featured Post with Multiple Images -->
-            <div class="blog-post">
-                <div class="post-header">
-                    <div class="post-meta">
-                        <span class="post-tag">Blog</span>
-                        <span>📅 23 AUG 2024</span>
-                        <span>💬 Featured News</span>
-                    </div>
-                    <h2 class="post-title">Uttarakshand's Hemkund Sahib yatra to start from September 4</h2>
-                </div>
-
-                <div class="post-images-grid">
-                    <div class="post-image" style="background: linear-gradient(135deg, #FF6B6B 0%, #FF5252 100%);"></div>
-                    <div class="post-image" style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);"></div>
-                </div>
-
-                <div class="post-content">
-                    <p class="post-text">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
-                    <p class="post-text">
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.
-                    </p>
-
-                    <div class="quote-box">
-                        <div class="quote-icon">❝</div>
-                        <div class="quote-text">
-                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                        </div>
-                    </div>
-
-                    <p class="post-text">
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Expression Post -->
-            <div class="blog-post">
-                <div class="post-header">
-                    <h2 class="post-title">Expression In New Human Rights Policy</h2>
-                </div>
-
-                <div class="post-images-grid">
-                    <div class="post-image" style="background: linear-gradient(135deg, #FF9800 0%, #F57C00 100%);"></div>
-                    <div class="post-image" style="background: linear-gradient(135deg, #00BCD4 0%, #0097A7 100%);"></div>
-                </div>
-
-                <div class="post-content">
-                    <p class="post-text">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    </p>
-                    <p class="post-text">
-                        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Promo Ad Banner -->
-            <div style="background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%); padding: 40px; margin: 40px 0; border-radius: 4px; display: flex; align-items: center; gap: 30px; color: white;">
-                <div style="font-size: 60px;">🎧</div>
-                <div>
-                    <h3 style="font-size: 22px; margin-bottom: 10px;">Get 70% discount on Amazon</h3>
-                    <button class="learn-more" style="background-color: #FFB300; color: #001f3f;">SHOP NOW</button>
-                </div>
-            </div>
-
-            <!-- Video Post -->
-            <div class="blog-post">
-                <div class="post-header">
-                    <h2 class="post-title">Super Mario 3D World, Super Mario Bros. 35 Announced for Nintendo Switch</h2>
-                </div>
-
-                <div class="video-container">
-                    <div class="play-button">▶️</div>
-                </div>
-
-                <div class="post-content">
-                    <p class="post-text">
-                        Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                    </p>
-                    <p class="post-text">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                    </p>
-                    <p class="post-text">
-                        Tags: <a href="#" style="color: #0066FF; text-decoration: none;">News</a>, <a href="#" style="color: #0066FF; text-decoration: none;">Blog</a>, <a href="#" style="color: #0066FF; text-decoration: none;">Magazine</a>, <a href="#" style="color: #0066FF; text-decoration: none;">Information</a>
-                    </p>
-                </div>
-            </div>
-
-            <!-- Author Box -->
-            <div class="author-box">
-                <div class="author-avatar"></div>
-                <div class="author-info">
-                    <h4>Henry N. Goodenough</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea.</p>
-                </div>
-            </div>
-
-            <!-- Related Posts -->
-            <div class="related-posts">
-                <h3 class="related-title">Related News</h3>
-                <div class="related-grid">
-                    <div class="related-item">
-                        <div class="related-image" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
-                        <p class="related-item-title">Sometimes A Good Text Message Startups, Files In The Public</p>
-                    </div>
-                    <div class="related-item">
-                        <div class="related-image" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
-                        <p class="related-item-title">Strikethrough & Text Breakdowns Again, Always Video Tokens</p>
-                    </div>
-                    <div class="related-item">
-                        <div class="related-image" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);"></div>
-                        <p class="related-item-title">Tools Taken Approved for Seniors That Could Detect Child</p>
-                    </div>
-                </div>
-                <div class="nav-arrows">
-                    <button class="nav-arrow">‹</button>
-                    <span></span>
-                    <button class="nav-arrow">›</button>
-                </div>
-            </div>
-
-            <!-- Comments -->
-            <div class="comments-section">
-                <h3 class="comments-title">3 Comments</h3>
-                <div class="comment">
-                    <div class="comment-avatar"></div>
-                    <div class="comment-body">
-                        <div class="comment-author">Emma K. Watson</div>
-                        <div class="comment-date">Aug 23 2024</div>
-                        <div class="comment-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vestibulum nec orci, quis egestas eros sed nulla quis. Consectetur adipiscing elit id orci et viverra amet veniam.</div>
-                        <div class="comment-reply">Reply</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Comment Form -->
-            <div class="comment-form">
-                <h3 class="comments-title">Leave A Comment</h3>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" placeholder="Enter your name">
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" placeholder="you@email.com">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Website</label>
-                    <input type="url" placeholder="https://example.com">
-                </div>
-                <div class="form-group">
-                    <label>Comment</label>
-                    <textarea placeholder="Write your comment here..."></textarea>
-                </div>
-                <button class="submit-btn">POST COMMENT</button>
-            </div>
-        </div>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Category Widget -->
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Category</h3>
-                <div class="category-grid">
-                    <div class="category-img"></div>
-                    <div class="category-img" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
-                    <div class="category-img" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
-                    <div class="category-img" style="background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);"></div>
-                    <div class="category-img" style="background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);"></div>
-                    <div class="category-img" style="background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);"></div>
-                </div>
-            </div>
-
-            <!-- Deals Widget -->
-            <div class="sidebar-widget deals-card">
-                <div class="deals-title">Best car rental</div>
-                <div class="deals-price">$50/day</div>
-            </div>
-
-            <!-- Social Widget -->
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Join With Us</h3>
-                <div class="social-links">
-                    <div class="social-btn">📘</div>
-                    <div class="social-btn">🐦</div>
-                    <div class="social-btn">📌</div>
-                    <div class="social-btn">▶️</div>
-                </div>
-            </div>
-
-            <!-- Trending Widget -->
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Trending News</h3>
-                <div class="trending-item">
-                    <div class="trending-thumb"></div>
-                    <div class="trending-content">
-                        <a href="#">This is the first trending news story</a>
-                        <div class="trending-date">October 15, 2024</div>
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="trending-thumb" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);"></div>
-                    <div class="trending-content">
-                        <a href="#">Second trending news article here</a>
-                        <div class="trending-date">October 14, 2024</div>
-                    </div>
-                </div>
-                <div class="trending-item">
-                    <div class="trending-thumb" style="background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);"></div>
-                    <div class="trending-content">
-                        <a href="#">Third trending story in sidebar</a>
-                        <div class="trending-date">October 13, 2024</div>
-                    </div>
-                </div>
-                <div class="nav-arrows" style="margin-top: 15px;">
-                    <button class="nav-arrow">‹</button>
-                    <span></span>
-                    <button class="nav-arrow">›</button>
-                </div>
-            </div>
-
-            <!-- Newsletter Widget -->
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Newsletter</h3>
-                <p style="font-size: 13px; margin-bottom: 15px; color: #666;">Stay updated on all the latest news and promotions.</p>
-                <input type="email" placeholder="Enter your email" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; margin-bottom: 10px;">
-                <button class="submit-btn" style="width: 100%;">Subscribe Now</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-        <div class="footer-grid">
-            <div class="footer-widget">
-                <h3>ABOUT US</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Here you can drop the first letter of your website.</p>
-            </div>
-            <div class="footer-widget">
-                <h3>TAGS</h3>
-                <a href="#">Consectetur</a>
-                <a href="#">Video</a>
-                <a href="#">Conceptual</a>
-                <a href="#">Design</a>
-                <a href="#">Art</a>
-                <a href="#">Ideas</a>
-                <a href="#">Trends</a>
-            </div>
-            <div class="footer-widget">
-                <h3>CONTACT</h3>
-                <a href="#">📍 604 Chittim Avenue Arlington, TX 76010</a>
-                <a href="#">📞 + 913 123 4567</a>
-                <a href="#">✉️ info@themeforest.com</a>
-            </div>
-            <div class="footer-widget">
-                <h3>POPULAR NEWS</h3>
-                <a href="#">🎬 India Brits Director Anuya New 10, 2024</a>
-                <a href="#">🎬 Classic Shader In Texas Waldo Wills The Best</a>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <a href="#" style="color: #aaa; text-decoration: none;">About</a> |
-            <a href="#" style="color: #aaa; text-decoration: none;">Terms & Conditions</a> |
-            <a href="#" style="color: #aaa; text-decoration: none;">Privacy Policy</a> |
-            <a href="#" style="color: #aaa; text-decoration: none;">Contact</a><br><br>
-            Copyright © 2024 NextPage. All rights reserved.
-        </div>
-    </div>
-</body>
-</html> 
+@endsection

@@ -165,11 +165,13 @@
          <li class="nav-item nav-profile">
              <div class="nav-link">
                  <div class="profile-image">
-                     <img src="images/faces/face5.jpg" alt="image" />
+                   @auth
+    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="profile" />
+@endauth
                  </div>
                  <div class="profile-name">
                      <p class="name">
-                         Welcome Jane
+                         Welcome {{ Auth::user()->username }}
                      </p>
                      <p class="designation">
                          Super Admin
@@ -237,6 +239,25 @@
                      <li class="nav-item"> <a class="nav-link" href="{{ route('admin.posts') }}">View</a></li>
                  </ul>
              </div>
+         </li>
+
+         <li class="nav-item">
+             <a class="nav-link" href="{{ route('admin.notification') }}">
+                 <i class="fa fa-puzzle-piece menu-icon"></i>
+                 <span class="menu-title">Notification</span>
+             </a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link" href="{{ route('admin.contact') }}">
+                 <i class="fa fa-puzzle-piece menu-icon"></i>
+                 <span class="menu-title">Contact</span>
+             </a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link" href="{{ route('admin.comment') }}">
+                 <i class="fa fa-puzzle-piece menu-icon"></i>
+                 <span class="menu-title">Comment</span>
+             </a>
          </li>
 
 

@@ -50,4 +50,24 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+
+     public function scopePublished($query)
+    {
+        return $query->where('status', 'published')
+                     ->whereNotNull('published_at')
+                     ->where('published_at', '<=', now());
+    }
+
+    public function incrementViews()
+    {
+        $this->increment('view_count');
+    }
+
+    public function getReadingTimeAttribute()
+    {
+        $words = str_word_count(strip_tags($this->content));
+        $minutes = ceil($words / 200);
+        return $minutes . ' min read';
+    }
 }

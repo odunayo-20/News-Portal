@@ -22,6 +22,9 @@ class User extends Authenticatable
 
     protected $guarded = [];
 
+protected $casts = [
+    'social_links' => 'array',
+];
 
     // protected $fillable = [
     //     'username',

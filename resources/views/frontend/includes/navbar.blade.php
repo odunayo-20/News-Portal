@@ -68,16 +68,16 @@
                 <div class="collapse navbar-collapse" id="nextpage_main_menu">
                     <ul class="navbar-nav menu-open">
                         <li class="current-menu-item">
-                            <a href="#banner">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="current-menu-item">
-                            <a href="#trending">Trending News</a>
+                            <a href="{{ route('trends') }}">Trending News</a>
                         </li>
                         <li class="current-menu-item">
                             <a href="#latest">Latest News</a>
                         </li>
                         <li class="current-menu-item">
-                            <a href="#grid">News Grid</a>
+                            <a href="{{ route('news.grid') }}">News Grid</a>
                         </li>
                         <li class="current-menu-item">
                             <a target="_blank" href="https://1.envato.market/5OQX2">Pro Version</a>

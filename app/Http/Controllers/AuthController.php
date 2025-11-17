@@ -12,7 +12,7 @@ class AuthController extends Controller
         auth()->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/login');
     }
 
 
@@ -34,7 +34,7 @@ class AuthController extends Controller
         // attempt authentication (handles hashing)
         if (auth()->attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect()->intended('admin/dashboard');
         }
 
         // authentication failed
