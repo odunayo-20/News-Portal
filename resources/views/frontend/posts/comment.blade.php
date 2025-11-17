@@ -27,7 +27,7 @@
                 <div class="card-body">
                     <div class="d-flex">
                         <img src="{{ asset('storage/'. $comment->user->avatar)}}"
-                            alt="{{ $comment->user->name }}" class="rounded-circle me-3" width="40" height="40">
+                            alt="{{ $comment->user->name }}" class="rounded-circle me-3" style="width: 40px; height: 40px; object-fit: cover;">
                         <div class="flex-grow-1">
                             <strong>{{ $comment->user->name }}</strong>
                             <small class="text-muted ms-2">{{ $comment->created_at->diffForHumans() }}</small>

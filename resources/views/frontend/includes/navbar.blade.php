@@ -80,7 +80,10 @@
                             <a href="{{ route('news.grid') }}">News Grid</a>
                         </li>
                         <li class="current-menu-item">
-                            <a target="_blank" href="https://1.envato.market/5OQX2">Pro Version</a>
+                            <a href="{{ route('about') }}">About Us</a>
+                        </li>
+                        <li class="current-menu-item">
+                            <a href="{{ route('contact') }}">Contact</a>
                         </li>
                     </ul>
                 </div>

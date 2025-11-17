@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\PostTag;
 use App\Models\Category;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
@@ -30,17 +31,29 @@ class FrontendController extends Controller
     }
 
     public function showPost($slug)
-    {
-        $post = Post::where('slug', $slug)->firstOrFail();
+{
+    $post = Post::where('slug', $slug)->firstOrFail();
 
-         $post->increment('views');
+    // Get visitor IP
+    $ip = request()->ip();
 
-         
-        $postTags = PostTag::get();
-        $categories = Category::get();
+    // Check if this IP has already viewed the post
+    $viewed = session()->get('post_views_' . $post->id, []);
 
-        return view('frontend.posts.show', compact('post', 'postTags', 'categories'));
+    if (!in_array($ip, $viewed)) {
+        $post->increment('views');
+
+        // Save this IP in session to prevent multiple counts
+        $viewed[] = $ip;
+        session()->put('post_views_' . $post->id, $viewed);
     }
+
+    $postTags = PostTag::get();
+    $categories = Category::get();
+
+    return view('frontend.posts.show', compact('post', 'postTags', 'categories'));
+}
+
 
 
       public function trend()
@@ -54,5 +67,30 @@ class FrontendController extends Controller
     {
         $newsGrid = Post::where('status', 'published')->latest()->paginate(10);
         return view('frontend.posts.news-grid', compact('newsGrid'));
+    }
+
+
+    public function contact()
+    {
+        return view('frontend.contact');
+    }
+
+
+    public function storeContact(Request $request)
+    {
+      $data =  $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string|min:10',
+        ]);
+
+Contact::create($data);
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+    }
+
+    public function about(){
+        return view('frontend.about');
     }
 }

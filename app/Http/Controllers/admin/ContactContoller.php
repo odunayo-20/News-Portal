@@ -12,4 +12,9 @@ class ContactContoller extends Controller
         $contacts = Contact::get();
         return view('admin.contact.index', compact('contacts'));
     }
+
+    public function show($id){
+        $contact = Contact::findOrFail($id);
+        return view('admin.contact.show', compact('contact'));
+    }
 }

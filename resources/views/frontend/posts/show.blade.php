@@ -235,11 +235,7 @@
             --bg-sky: #f5f9ff;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-        }
+
 
         img {
             max-width: 100%;
@@ -310,156 +306,11 @@
             }
         }
 
-        /* Topbar */
-        .topbar {
-            background: var(--dark-blue);
-            color: #fff;
-            padding: 10px 0;
-            font-size: 14px;
-        }
 
-        .topbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
 
-        .topbar-menu ul {
-            display: flex;
-            list-style: none;
-            gap: 20px;
-        }
 
-        .topbar-menu a {
-            color: #fff;
-        }
 
-        .topbar-menu a:hover {
-            color: var(--primary-blue);
-        }
-
-        .topbar-social {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .social-area {
-            display: flex;
-            list-style: none;
-            gap: 10px;
-        }
-
-        .social-area a {
-            width: 30px;
-            height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: #fff;
-        }
-
-        .social-area a:hover {
-            background: var(--primary-blue);
-        }
-
-        /* Header */
-        .adbar {
-            background: #fff;
-            padding: 20px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .adbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo h1 {
-            color: var(--primary-blue);
-            font-size: 2rem;
-        }
-
-        .logo span {
-            color: #000;
-        }
-
-        /* Navigation */
-        .navbar {
-            background: var(--primary-blue);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px;
-        }
-
-        .navbar-nav {
-            display: flex;
-            list-style: none;
-            gap: 5px;
-        }
-
-        .navbar-nav a {
-            color: #fff;
-            padding: 15px 20px;
-            display: block;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .navbar-nav a:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            background: #fff;
-            margin: 5px 0;
-            transition: 0.3s;
-        }
-
-        .nav-search {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-search input {
-            padding: 8px 15px;
-            border: none;
-            border-radius: 20px;
-            width: 200px;
-        }
-
-        .nav-search button {
-            background: none;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            padding: 8px;
-        }
-
+       
         /* Page Title */
         .page-title {
             padding: 20px 0;

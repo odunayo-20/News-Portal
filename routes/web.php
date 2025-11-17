@@ -38,6 +38,9 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
 
 
      Route::get('/contact', [App\Http\Controllers\Admin\ContactContoller::class, 'index'])->name('admin.contact');
+     Route::get('/contact/show/{id}', [App\Http\Controllers\Admin\ContactContoller::class, 'show'])->name('admin.contact.show');
+
+
      Route::get('/comment', [App\Http\Controllers\Admin\CommentContoller::class, 'index'])->name('admin.comment');
     //  Route::get('/post/create', App\Livewire\Admin\Post\Create::class)->name('admin.post.create');
 
@@ -67,6 +70,12 @@ Route::get('/post/show/{slug}', [App\Http\Controllers\FrontendController::class,
 Route::get('/trending', [App\Http\Controllers\FrontendController::class, 'trend'])->name('trends');
 Route::get('/trending', [App\Http\Controllers\FrontendController::class, 'trend'])->name('trends');
 Route::get('/news-grid', [App\Http\Controllers\FrontendController::class, 'newsGrid'])->name('news.grid');
+
+Route::get('/about', [App\Http\Controllers\FrontendController::class, 'about'])->name('about');
+Route::get('/contact', [App\Http\Controllers\FrontendController::class, 'contact'])->name('contact');
+Route::post('/contact/submit', [App\Http\Controllers\FrontendController::class, 'storeContact'])->name('contact.submit');
+
+
 
 Route::middleware('auth')->group(function () {
 Route::post('/comments/store/{post}', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');

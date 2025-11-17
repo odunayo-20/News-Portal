@@ -22,7 +22,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Contact
-                                   
+
                                 </h4>
                                 @if (session()->has('message'))
                                     <div class="alert alert-success">{{ session('message') }}</div>
@@ -33,7 +33,8 @@
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Name</th>
-                                               
+                                                <th>Email</th>
+                                                <th>Subject</th>
                                                 <th>Created</th>
                                                 <th>Action</th>
                                             </tr>
@@ -43,11 +44,13 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $value->name }}</td>
-                                                
+                                                <td>{{ $value->email}}</td>
+                                                <td>{{ Str::limit($value->subject, 50, '...')}}</td>
+
                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
                                                 <td>
-                                                    <button wire:click="edit({{ $value->id }})" class="btn btn-sm btn-info">Edit</button>
-                                                    <button wire:click="deleteConfirm({{ $value->id }})" class="btn btn-sm btn-danger">Delete</button>
+                                                    <a href="{{ route('admin.contact.show', $value->id) }}" class="btn btn-sm btn-info">Show</a>
+                                                    <button wire:click="deleteConfirm({{ $value->id }})" class="btn btn-sm btn-danger">Delete</butto>
                                                 </td>
                                             </tr>
                                             @endforeach
