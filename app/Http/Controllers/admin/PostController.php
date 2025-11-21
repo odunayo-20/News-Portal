@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PostTag;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -22,7 +23,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::get();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
 
@@ -34,6 +36,7 @@ class PostController extends Controller
             'excerpt' => 'nullable|string',
             'content' => 'required|string',
             'category_id' => 'required|exists:categories,id',
+            'tag_id' => 'required|exists:tags,id',
             'featured_image' => 'nullable|image|max:2048',
             'status' => 'required|in:draft,published,scheduled',
             'published_at' => 'nullable|date',
@@ -48,6 +51,7 @@ class PostController extends Controller
             'excerpt' => $request->excerpt,
             'content' => $request->content,
             'category_id' => $request->category_id,
+            'tag_id' => $request->tag_id,
             'status' => $request->status,
             'published_at' => $request->published_at,
             'is_featured' => (bool) $request->is_featured,
@@ -70,8 +74,9 @@ class PostController extends Controller
     public function edit($slug)
     {
         $categories = Category::get();
+        $tags = Tag::get();
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('admin.posts.edit', compact('categories', 'post'));
+        return view('admin.posts.edit', compact('categories', 'post', 'tags'));
     }
 
 
@@ -84,6 +89,7 @@ class PostController extends Controller
             'excerpt' => 'nullable|string',
             'content' => 'required|string',
             'category_id' => 'required',
+            'tag_id' => 'required',
             'featured_image' => 'nullable|image|max:2048',
             'status' => 'required|in:draft,published,scheduled',
             'published_at' => 'nullable',
@@ -97,6 +103,7 @@ class PostController extends Controller
             'excerpt' => $request->excerpt,
             'content' => $request->content,
             'category_id' => $request->category_id,
+            'tag_id' => $request->tag_id,
             'status' => $request->status,
             'published_at' => $request->published_at,
             'is_featured' => (bool) $request->is_featured,
@@ -124,6 +131,6 @@ class PostController extends Controller
         $post = Post::where('slug', $slug)->firstOrFail();
         $postTags = PostTag::where('post_id', $post->id)->get();
 // dd($postTag);
-        return view('admin.posts.show', compact('post', 'postTags'));
+        return view('admin.posts.show', compact(['post', 'postTags']));
     }
 }

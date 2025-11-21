@@ -11,14 +11,14 @@ class PostTag extends Model
     protected $guarded = [];
 
 
-    public function post()
-    {
-        return $this->belongsTo(Post::class);
-    }
+    // public function post()
+    // {
+    //     return $this->belongsTo(Post::class);
+    // }
 
-    public function tag()
-    {
-        return $this->belongsTo(Tag::class);
-    }
+    // public function tag()
+    // {
+    //     return $this->belongsTo(Tag::class);
+    // }
 
 }

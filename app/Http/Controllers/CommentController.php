@@ -76,15 +76,21 @@ class CommentController extends Controller
 }
 
 
-    public function destroy(Comment $comment)
+   public function destroy(Comment $comment)
     {
-        $this->authorize('delete', $comment);
+        $user = auth()->user();
+
+        // Allow delete only if user is owner or admin
+        if ($user->id !== $comment->user_id && !$user->isAdmin()) {
+            abort(403, 'Unauthorized action.');
+        }
 
         $comment->delete();
 
-        return back()->with('success', 'Comment deleted successfully!');
+        return back()->with('success', 'Comment deleted successfully.');
     }
 
+    
     public function storeReply(Request $request, $comment)
     {
         // Logic to store a reply to the comment with ID $comment

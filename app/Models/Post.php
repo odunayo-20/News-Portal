@@ -11,12 +11,14 @@ class Post extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = [
-        'user_id', 'category_id', 'title', 'slug',
-        'excerpt', 'content', 'featured_image',
-        'gallery', 'published_at', 'status',
-        'is_featured', 'is_breaking', 'views'
-    ];
+    // protected $fillable = [
+    //     'user_id', 'category_id','tag_id', 'title', 'slug',
+    //     'excerpt', 'content', 'featured_image',
+    //     'gallery', 'published_at', 'status',
+    //     'is_featured', 'is_breaking', 'views'
+    // ];
+
+    protected $guarded = [];
 
     protected $casts = [
         'gallery' => 'array',
@@ -36,9 +38,9 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function tags(): BelongsToMany
+    public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsTo(Tag::class, 'tag_id');
     }
 
     // public function postTag(): BelongsTo
@@ -70,4 +72,15 @@ class Post extends Model
         $minutes = ceil($words / 200);
         return $minutes . ' min read';
     }
+
+    public function likes()
+{
+    return $this->belongsToMany(User::class, 'post_user_likes')->withTimestamps();
+}
+
+public function likedByUser($userId)
+{
+    return $this->likes()->where('user_id', $userId)->exists();
+}
+    
 }

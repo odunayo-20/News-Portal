@@ -13,7 +13,7 @@ class Index extends Component
     public function render()
     {
         $contacts = Contact::get();
-        return view('livewire.admin.contact.index', compact('contacts'));
+        return view('livewire.admin.contact.index', compact(['contacts']));
     }
 
      public function deleteConfirm($id)

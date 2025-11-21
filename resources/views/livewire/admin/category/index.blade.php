@@ -47,11 +47,12 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ Str::limit($category->description, 50, '...') }}</td>
-                                                <td>
-                                                    @if($category->image)
-                                                        <img src="{{ Storage::url($category->image) }}" width="50">
+                                                 <td><img src="{{ Storage::url($category->featured_image) }}" width="100" /></td>
+                                                {{-- <td>
+                                                    @if($category->featured_image)
+                                                        <img src="{{ asset('storage/' .$category->featured_image) }}" width="50">
                                                     @endif
-                                                </td>
+                                                </td> --}}
                                                 <td>{{ $category->is_featured ? 'Yes' : 'No' }}</td>
                                                 <td>{{ $category->order }}</td>
                                                 <td>{{ $category->created_at->format('d-m-Y') }}</td>
@@ -63,6 +64,8 @@
                                             @endforeach
                                         </tbody>
                                     </table>
+
+                                    {{ $categories->links() }}
                                 </div>
                             </div>
                         </div>

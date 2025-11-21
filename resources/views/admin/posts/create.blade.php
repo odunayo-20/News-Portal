@@ -56,6 +56,20 @@
                                                     @enderror
                                                 </div>
                                                 <div class="form-group col-md-6">
+                                                    <label>Tag</label>
+                                                    <select name="tag_id" class="form-control">
+                                                        <option value="">-- Select Tag --</option>
+                                                        @foreach ($tags as $value)
+                                                            <option value="{{ $value->id }}"
+                                                                {{ old('tag_id') == $value->id ? 'selected' : '' }}>
+                                                                {{ $value->name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('tag_id')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group col-md-6">
                                                     <label>Status</label>
                                                     <select name="status" class="form-control">
                                                         <option value="draft"

@@ -61,7 +61,7 @@ class Index extends Component
         $posts = Post::with('category')->latest()->paginate(10);
         // provide categories for the form
         $categories = Category::orderBy('name')->get();
-        return view('livewire.admin.post.index', compact('posts','categories'));
+        return view('livewire.admin.post.index', compact(['posts','categories']));
     }
 
     // public function openCreateModal()

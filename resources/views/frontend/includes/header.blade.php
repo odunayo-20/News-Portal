@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Portal</title>
+    <title>News Portal - @yield('title')</title>
 
     <!-- favicon -->
-    <link rel=icon href="assets/img/favicon.png" sizes="20x20" type="image/png">
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ url('/sitemap.xml') }}">
+    <link rel=icon href="{{ asset('frontend/assets/img/favicon.png') }}" sizes="20x20" type="image/png">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/css/vendor.css') }}">

@@ -14,7 +14,7 @@ class Index extends Component
     public function render()
     {
         $comments = Comment::get();
-        return view('livewire.admin.comment.index', compact('comments'));
+        return view('livewire.admin.comment.index', compact(['comments']));
     }
 
 

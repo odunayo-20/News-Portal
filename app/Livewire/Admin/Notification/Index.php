@@ -13,7 +13,7 @@ public $deleteId;
      public function render()
     {
         $notifications = Notification::get();
-        return view('livewire.admin.notification.index', compact('notifications'));
+        return view('livewire.admin.notification.index', compact(['notifications']));
     }
 
      public function deleteConfirm($id)

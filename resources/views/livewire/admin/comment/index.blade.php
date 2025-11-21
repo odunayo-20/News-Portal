@@ -32,7 +32,10 @@
                                         <thead>
                                             <tr>
                                                 <th>S/N</th>
-                                                <th>Name</th>
+                                                {{-- <th>Name</th> --}}
+                                                <th>User</th>
+                                                <th>Post Title </th>
+                                                <th>Status</th>
 
                                                 <th>Created</th>
                                                 <th>Action</th>
@@ -42,7 +45,10 @@
                                             @foreach($comments as $value)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                {{-- <td>{{ $value->name }}</td> --}}
+                                                <td>{{ $value->user->name }}</td>
+                                                <td>{{ $value->post->title}}</td>
+                                                <td>{{ $value->is_approved}}</td>
+                                                {{-- <td>{{ $value->is_approved =  "Approved" ? "Decline" }}</td> --}}
 
                                                 <td>{{ $value->created_at->format('d-m-Y') }}</td>
                                                 <td>

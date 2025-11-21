@@ -2,5 +2,5 @@
 
 
 @section('content')
-    @livewire('admin.notification.index')
+    @livewire('admin.comment.index')
 @endsection

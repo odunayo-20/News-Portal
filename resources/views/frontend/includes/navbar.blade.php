@@ -9,7 +9,12 @@
                                 <li><a href="#">Author</a></li>
                                 <li><a href="#">Advertisment</a></li>
                                 <li><a href="#">Member</a></li>
-                                <li><a href="#">Sitemap</a></li>
+                                <li><a href="{{ route('sitemap.html') }}">Sitemap</a></li>
+                                <div class="mb-4">
+    {{-- <h3>XML Sitemap</h3>
+    <p>For search engines: <a href="{{ url('/sitemap.xml') }}">{{ url('/sitemap.xml') }}</a></p>
+</div> --}}
+
                             </ul>
                         </div>
                     </div>
@@ -36,12 +41,12 @@
                 <div class="row">
                     <div class="col-xl-6 col-lg-5 align-self-center">
                         <div class="logo text-md-left text-center">
-                            <a class="main-logo" href="index.html"><img src="assets/img/logo.png" alt="img"></a>
+                            <a class="main-logo" href="{{ route('home') }}"><img src="{{ asset('frontend/assets/img/logo.png') }}" alt="img"></a>
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-7 text-md-right text-center">
                         <a href="#" class="adbar-right">
-                            <img src="assets/img/add/1.png" alt="img">
+                            <img src="{{ asset('frontend/assets/img/add/1.png') }}" alt="img">
                         </a>
                     </div>
                 </div>
@@ -54,7 +59,7 @@
             <div class="container nav-container">
                 <div class="responsive-mobile-menu">
                     <div class="logo d-lg-none d-block">
-                        <a class="main-logo" href="index.html"><img src="assets/img/logo.png" alt="img"></a>
+                        <a class="main-logo" href="{{ route('home') }}"><img src="{{ asset('frontend/assets/img/logo.png') }}" alt="img"></a>
                     </div>
                     <button class="menu toggle-btn d-block d-lg-none" data-target="#nextpage_main_menu"
                     aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +79,7 @@
                             <a href="{{ route('trends') }}">Trending News</a>
                         </li>
                         <li class="current-menu-item">
-                            <a href="#latest">Latest News</a>
+                            <a href="{{ route('category') }}">Category</a>
                         </li>
                         <li class="current-menu-item">
                             <a href="{{ route('news.grid') }}">News Grid</a>

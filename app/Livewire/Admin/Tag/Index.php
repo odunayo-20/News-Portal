@@ -94,6 +94,6 @@ class Index extends Component
     {
         $tags = Tag::latest()->paginate(10);
         // Return the wrapper view so it receives $tags (the wrapper includes the index view)
-        return view('livewire.admin.tag', compact('tags'));
+        return view('livewire.admin.tag', compact(['tags']));
     }
 }

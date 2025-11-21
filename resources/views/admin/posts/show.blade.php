@@ -16,13 +16,12 @@
                 >
                 @endif
                 <div class="card-body p-5">
-                    @if ($postTags)
-                    @foreach ($postTags as $postTag)
+
                     <span class="badge bg-primary text-white mb-3">
-                        {{ $postTag->tag->name }}
+                        {{ $post->tags->name }}
                     </span>
-                    @endforeach
-                    @endif
+
+
 
                     {{-- Title --}}
                     <h2 class="card-title fw-bold mb-3">

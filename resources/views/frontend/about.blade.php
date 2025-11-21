@@ -1,5 +1,5 @@
 @extends('layouts.frontend-app')
-
+@section('title', 'About Us')
 @section('content')
     <div class="container">
         <div class="page-title">
@@ -198,7 +198,7 @@
         </div>
     </div>
 
-    
+
     <style>
         :root {
             --primary-blue: #0066ff;

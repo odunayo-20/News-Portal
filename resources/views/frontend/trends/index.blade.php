@@ -1,4 +1,5 @@
 @extends('layouts.frontend-app')
+@section('title', 'Trends')
 
 @section('content')
     <div class="pd-top-80 pd-bottom-50" id="grid">
@@ -9,7 +10,7 @@
                         <div class="single-post-wrap style-overlay">
                             <div class="thumb">
                                 <img src="{{ asset('storage/' . $value->featured_image) }}" alt="img">
-                                <a class="tag-base tag-purple" href="#">{{ $value->category->name }}</a>
+                                <a class="tag-base tag-purple" href="{{ route('tag.show', $value->tags->slug) }}">{{ $value->tags->name }}</a>
                             </div>
                             <div class="details">
                                 <div class="post-meta-single">

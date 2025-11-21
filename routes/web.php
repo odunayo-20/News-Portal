@@ -72,8 +72,16 @@ Route::get('/trending', [App\Http\Controllers\FrontendController::class, 'trend'
 Route::get('/news-grid', [App\Http\Controllers\FrontendController::class, 'newsGrid'])->name('news.grid');
 
 Route::get('/about', [App\Http\Controllers\FrontendController::class, 'about'])->name('about');
+Route::get('/category', [App\Http\Controllers\FrontendController::class, 'category'])->name('category');
+Route::get('/category/show/{slug}', [App\Http\Controllers\FrontendController::class, 'categoryShow'])->name('category.show');
+Route::get('/tag/{slug}', [App\Http\Controllers\TagController::class, 'show'])->name('tag.show');
 Route::get('/contact', [App\Http\Controllers\FrontendController::class, 'contact'])->name('contact');
 Route::post('/contact/submit', [App\Http\Controllers\FrontendController::class, 'storeContact'])->name('contact.submit');
+Route::get('/terms', [App\Http\Controllers\FrontendController::class, 'terms'])->name('terms');
+Route::get('/privacy', [App\Http\Controllers\FrontendController::class, 'privacy'])->name('privacy');
+
+Route::get('/sitemap', [App\Http\Controllers\frontend\SiteMapController::class, 'htmlSitemap'])->name('sitemap.html');
+Route::get('/sitemap.xml', [App\Http\Controllers\frontend\SiteMapController::class, 'index']);
 
 
 

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class NotificationController extends Controller
 {
-  
+
 
 
      public function index()
@@ -17,7 +17,7 @@ class NotificationController extends Controller
             ->latest()
             ->paginate(15);
 
-        return view('admin.notification.index', compact('notifications'));
+        return view('admin.notification.index', compact(['notifications']));
     }
 
     public function markRead($id)
@@ -28,7 +28,7 @@ class NotificationController extends Controller
             'read_at' => now(),
         ]);
 
-        return back();
+        return redirect()->back();
     }
 
     public function markAllRead()
@@ -37,6 +37,6 @@ class NotificationController extends Controller
             ->whereNull('read_at')
             ->update(['read_at' => now()]);
 
-        return back();
+        return redirect()->back();
     }
 }
